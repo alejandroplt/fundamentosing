@@ -42,7 +42,7 @@ public class AlumnosDAO implements CRUD {
     public List listar() {
         List<Alumnos> lista = new ArrayList<>();
 //        String sql = "select * from estudiante,padre WHERE estudiante.id_padre=padre.id_padre";
-        String sql = "select e.id_estudiante,e.matricula,e.n_completo,CURP,e.f_nacimiento,e.sexo,e.grp_sanguineo,g.numero,p.np_completo from "
+        String sql = "select e.id_estudiante,e.n_completo,CURP,e.f_nacimiento,e.sexo,e.grp_sanguineo,g.numero,p.np_completo from "
                 + "estudiante as e natural join padre as p natural join grado as g";
         try {
             con = acceso.Conectar();
@@ -60,16 +60,15 @@ public class AlumnosDAO implements CRUD {
 //                c.setIdgrado(rs.getInt("id_grado"));
 //                c.setIdpadre(rs.getInt("np_completo"));
                 c.setId(rs.getInt(1));
-                c.setMatricula(rs.getString(2));
-                c.setNombrecom(rs.getString(3));
-                c.setCurp(rs.getString(4));
-                c.setFechanaci(rs.getString(5));
-                c.setSexo(rs.getString(6));
-                c.setGrpsangre(rs.getString(7));
+                c.setNombrecom(rs.getString(2));
+                c.setCurp(rs.getString(3));
+                c.setFechanaci(rs.getString(4));
+                c.setSexo(rs.getString(5));
+                c.setGrpsangre(rs.getString(6));
 //                c.setIdgrado(rs.getInt(8));
-                c.setNumero(rs.getString(8));
+                c.setNumero(rs.getString(7));
 //                c.setIdpadre(rs.getInt(9));
-                c.setNombreCompleto(rs.getString(9));
+                c.setNombreCompleto(rs.getString(8));
                 lista.add(c);
             }
         } catch (Exception e) {
@@ -80,7 +79,7 @@ public class AlumnosDAO implements CRUD {
     @Override
     public int add(Object[] o) {
         int r = 0;
-        String sql = "insert into estudiante(matricula,n_completo,CURP,f_nacimiento,sexo,grp_sanguineo,id_grado,id_padre)values(?,?,?,?,?,?,?,?)";
+        String sql = "insert into estudiante(n_completo,CURP,f_nacimiento,sexo,grp_sanguineo,id_grado,id_padre)values(?,?,?,?,?,?,?)";
         try {
             con = acceso.Conectar();
             ps = con.prepareStatement(sql);
@@ -91,7 +90,6 @@ public class AlumnosDAO implements CRUD {
             ps.setObject(5, o[4]);
             ps.setObject(6, o[5]);
             ps.setObject(7, o[6]);
-            ps.setObject(8, o[7]);
             r = ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -102,7 +100,7 @@ public class AlumnosDAO implements CRUD {
     public int actualizar(Object[] o) {
         int r = 0;
 //        String sql = "update estudiante set matricula=?,n_completo=?,CURP=?,f_nacimiento=?,sexo=?,grp_sanguineo=?,id_grado=?,id_padre=? where id_estudiante=?";
-        String sql = "update estudiante set matricula=?,n_completo=?,CURP=?,f_nacimiento=?,sexo=?,grp_sanguineo=?,id_grado=?,id_padre=? where id_estudiante=?";
+        String sql = "update estudiante set n_completo=?,CURP=?,f_nacimiento=?,sexo=?,grp_sanguineo=?,id_grado=?,id_padre=? where id_estudiante=?";
         try {
             con = acceso.Conectar();
             ps = con.prepareStatement(sql);
@@ -114,7 +112,6 @@ public class AlumnosDAO implements CRUD {
             ps.setObject(6, o[5]);
             ps.setObject(7, o[6]);
             ps.setObject(8, o[7]);
-            ps.setObject(9, o[8]);
             r = ps.executeUpdate();
         } catch (Exception e) {
         }

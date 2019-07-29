@@ -1,5 +1,6 @@
 package interfaces;
 
+import com.placeholder.PlaceHolder;
 import modelos.Alumnos;
 import modelos.AlumnosDAO;
 import modelos.conexion;
@@ -24,7 +25,6 @@ import static javax.swing.SwingConstants.CENTER;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
-
 public class AlumnoForm extends javax.swing.JInternalFrame {
 
     AlumnosDAO dao = new AlumnosDAO();
@@ -41,6 +41,7 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
         listar();
         mostrargrado();
         mostrarpadre();
+        holders();
         //Permite centrar el Header(titulos) de la tabla.
         TableCellRenderer rendererFromHeader = tabla.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
@@ -48,22 +49,27 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
 
     }
 
+    void holders() {
+        PlaceHolder holder;
+        holder = new PlaceHolder(txtNombreCompleto, "Ingrese nombre iniciando por apellido");
+        holder = new PlaceHolder(txtCurp, "Ingrese CURP utilizando mayúsculas");
+    }
+
     void listar() {
         List<Alumnos> lista = dao.listar();
         modelo = (DefaultTableModel) tabla.getModel();
-        Object[] ob = new Object[9];
+        Object[] ob = new Object[8];
         for (int i = 0; i < lista.size(); i++) {
             ob[0] = lista.get(i).getId();
-            ob[1] = lista.get(i).getMatricula();
-            ob[2] = lista.get(i).getNombrecom();
-            ob[3] = lista.get(i).getCurp();
-            ob[4] = lista.get(i).getFechanaci();
-            ob[5] = lista.get(i).getSexo();
-            ob[6] = lista.get(i).getGrpsangre();
+            ob[1] = lista.get(i).getNombrecom();
+            ob[2] = lista.get(i).getCurp();
+            ob[3] = lista.get(i).getFechanaci();
+            ob[4] = lista.get(i).getSexo();
+            ob[5] = lista.get(i).getGrpsangre();
 //            ob[7] = lista.get(i).getIdgrado();
-           ob[7] = lista.get(i).getNumero();
+            ob[6] = lista.get(i).getNumero();
 //            ob[8] = lista.get(i).getIdpadre();
-            ob[8] = lista.get(i).getNombreCompleto();
+            ob[7] = lista.get(i).getNombreCompleto();
             modelo.addRow(ob);
         }
         tabla.setModel(modelo);
@@ -77,7 +83,7 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ComboGrado.addItem(rs.getString("numero"));
-                
+
             }
         } catch (SQLException ex) {
 
@@ -92,7 +98,6 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ComboPadre.addItem(rs.getString("np_completo"));
-
             }
         } catch (SQLException ex) {
 
@@ -104,8 +109,6 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        txtMatricula = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtCurp = new javax.swing.JTextField();
@@ -132,12 +135,6 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
         setTitle("MODULO ALUMNO");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel1.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("MATRICULA");
-
-        txtMatricula.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -240,13 +237,11 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtCurp, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                            .addComponent(txtMatricula)
                             .addComponent(txtNombreCompleto)
                             .addComponent(CalendarFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(30, 30, 30)
@@ -277,40 +272,34 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(txtMatricula))
-                                .addGap(15, 15, 15)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(15, 15, 15))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6)
                                     .addComponent(ComboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(15, 15, 15)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel7)
-                                    .addComponent(ComboSangre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
+                                    .addComponent(ComboSangre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(13, 13, 13)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(ComboGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))
-                                .addGap(14, 14, 14)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel9)
-                                    .addComponent(ComboPadre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel8)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
+                                .addGap(15, 15, 15)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
                                     .addComponent(txtCurp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(15, 15, 15)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(CalendarFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(15, 15, 15)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(ComboPadre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAgregar)
                             .addComponent(btnActualizar)
@@ -326,7 +315,7 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "MATRICULA", "NOMBRE COMPLETO", "CURP", "FECHA DE NACIMIENTO", "SEXO", "TIPO DE SANGRE", "GRADO", "PADRE O TUTOR"
+                "ID", "NOMBRE COMPLETO", "CURP", "FECHA DE NACIMIENTO", "SEXO", "TIPO DE SANGRE", "GRADO", "PADRE O TUTOR"
             }
         ));
         tabla.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
@@ -339,13 +328,12 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tabla);
         if (tabla.getColumnModel().getColumnCount() > 0) {
             tabla.getColumnModel().getColumn(0).setPreferredWidth(40);
-            tabla.getColumnModel().getColumn(1).setPreferredWidth(100);
-            tabla.getColumnModel().getColumn(2).setPreferredWidth(250);
-            tabla.getColumnModel().getColumn(3).setPreferredWidth(170);
-            tabla.getColumnModel().getColumn(4).setPreferredWidth(150);
-            tabla.getColumnModel().getColumn(5).setPreferredWidth(100);
-            tabla.getColumnModel().getColumn(6).setPreferredWidth(150);
-            tabla.getColumnModel().getColumn(8).setPreferredWidth(250);
+            tabla.getColumnModel().getColumn(1).setPreferredWidth(250);
+            tabla.getColumnModel().getColumn(2).setPreferredWidth(170);
+            tabla.getColumnModel().getColumn(3).setPreferredWidth(150);
+            tabla.getColumnModel().getColumn(4).setPreferredWidth(100);
+            tabla.getColumnModel().getColumn(5).setPreferredWidth(150);
+            tabla.getColumnModel().getColumn(7).setPreferredWidth(250);
         }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -396,22 +384,20 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
             showMessageDialog(this, "Se debe seleccionar una fila");
         } else {
             id = parseInt(tabla.getValueAt(fila, 0).toString());
-            String matri = tabla.getValueAt(fila, 1).toString();
-            String nomcom = tabla.getValueAt(fila, 2).toString();
-            String curp = tabla.getValueAt(fila, 3).toString();
+            String nomcom = tabla.getValueAt(fila, 1).toString();
+            String curp = tabla.getValueAt(fila, 2).toString();
             Date date;
             try {
-                date = new SimpleDateFormat("yyy-MM-dd").parse(tabla.getValueAt(fila, 4).toString());
+                date = new SimpleDateFormat("yyy-MM-dd").parse(tabla.getValueAt(fila, 3).toString());
                 CalendarFecha.setDate(date);
             } catch (ParseException ex) {
                 getLogger(UsuariosForm.class.getName()).log(SEVERE, null, ex);
             }
-            ComboSexo.setSelectedItem(tabla.getValueAt(fila, 5));
-            ComboSangre.setSelectedItem(tabla.getValueAt(fila, 6));
-            ComboGrado.setSelectedItem(tabla.getValueAt(fila, 7));
-            ComboPadre.setSelectedItem(tabla.getValueAt(fila, 8));
+            ComboSexo.setSelectedItem(tabla.getValueAt(fila, 4));
+            ComboSangre.setSelectedItem(tabla.getValueAt(fila, 5));
+            ComboGrado.setSelectedItem(tabla.getValueAt(fila, 6));
+            ComboPadre.setSelectedItem(tabla.getValueAt(fila, 7));
 
-            txtMatricula.setText(matri);
             txtNombreCompleto.setText(nomcom);
             txtCurp.setText(curp);
 
@@ -450,32 +436,29 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ComboPadreActionPerformed
 
     void agregar() {
-        if (txtMatricula.getText().equals("") & txtNombreCompleto.getText().equals("")
-                & txtCurp.getText().equals("")) {
+        if ( txtNombreCompleto.getText().equals("") & txtCurp.getText().equals("")) {
             showMessageDialog(this, "Se deben llenar todos los campos");
         } else {
             int año = CalendarFecha.getCalendar().get(YEAR);
             int dia = CalendarFecha.getCalendar().get(DAY_OF_MONTH);
             int mes = CalendarFecha.getCalendar().get(MONTH);
 
-            String matri = txtMatricula.getText();
             String nombrec = txtNombreCompleto.getText();
             String curp = txtCurp.getText();
             String fecha = año + "-" + mes + "-" + dia;
             String combsex = ComboSexo.getSelectedItem().toString();
             String comsangre = ComboSangre.getSelectedItem().toString();
             int combgrado = ComboGrado.getSelectedIndex();
-            int combpadre = ComboPadre.getSelectedIndex(); 
- 
-            Object[] ob = new Object[8];
-            ob[0] = matri;
-            ob[1] = nombrec;
-            ob[2] = curp;
-            ob[3] = fecha;
-            ob[4] = combsex;
-            ob[5] = comsangre;
-            ob[6] = combgrado;
-            ob[7] = combpadre;
+            int combpadre = ComboPadre.getSelectedIndex();
+
+            Object[] ob = new Object[7];
+            ob[0] = nombrec;
+            ob[1] = curp;
+            ob[2] = fecha;
+            ob[3] = combsex;
+            ob[4] = comsangre;
+            ob[5] = combgrado;
+            ob[6] = combpadre;
             dao.add(ob);
             showMessageDialog(this, "Usuario registrado exitosamente");
 
@@ -483,7 +466,6 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
     }
 
     void limpiarcampos() {
-        txtMatricula.setText("");
         txtNombreCompleto.setText("");
         txtCurp.setText("");
         CalendarFecha.setCalendar(null);
@@ -500,7 +482,6 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
             showMessageDialog(this, "Se debe seleccionar una fila");
 
         } else {
-            String matri = txtMatricula.getText();
             String nombrec = txtNombreCompleto.getText();
             String curp = txtCurp.getText();
             SimpleDateFormat dateFormato = new SimpleDateFormat("yyy-MM-dd");
@@ -512,16 +493,15 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
 //            String idgrado = ComboGrado.getSelectedItem().toString();
 //            String idpadre = ComboPadre.getSelectedItem().toString();
 
-            Object[] obj = new Object[9];
-            obj[0] = matri;
-            obj[1] = nombrec;
-            obj[2] = curp;
-            obj[3] = date;
-            obj[4] = combsex;
-            obj[5] = grpsangre;
-            obj[6] = idgrado;
-            obj[7] = idpadre;
-            obj[8] = id;
+            Object[] obj = new Object[8];
+            obj[0] = nombrec;
+            obj[1] = curp;
+            obj[2] = date;
+            obj[3] = combsex;
+            obj[4] = grpsangre;
+            obj[5] = idgrado;
+            obj[6] = idpadre;
+            obj[7] = id;
             dao.actualizar(obj);
         }
     }
@@ -564,7 +544,6 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -578,7 +557,6 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla;
     private javax.swing.JTextField txtCurp;
-    private javax.swing.JTextField txtMatricula;
     private javax.swing.JTextField txtNombreCompleto;
     // End of variables declaration//GEN-END:variables
 }

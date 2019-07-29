@@ -43,6 +43,9 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
@@ -239,6 +242,20 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem7);
 
+        jMenuItem8.setText("CONTROL DE CALIFICACIONES 1º");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem8);
+
+        jMenuItem9.setText("CONTROL DE CALIFICACIONES 2º");
+        jMenu5.add(jMenuItem9);
+
+        jMenuItem13.setText("CONTROL DE CALIFICACIONES 3º");
+        jMenu5.add(jMenuItem13);
+
         jMenuBar1.add(jMenu5);
 
         jMenu6.setBackground(new java.awt.Color(31, 37, 53));
@@ -394,6 +411,11 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         CentrarVentana(tñ);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        CalificacionesPrimeroFrom cpf = new CalificacionesPrimeroFrom();
+        CentrarVentana(cpf);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     void CentrarVentana(JInternalFrame frame) {
         VentanaPrincipal.add(frame);
         Dimension dimension = VentanaPrincipal.getSize();
@@ -454,12 +476,15 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

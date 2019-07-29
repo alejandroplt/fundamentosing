@@ -4,20 +4,25 @@ public class Padres {
 
     int id;
     String nombrecompleto;
-    String correo;
-    String telefono;
+    String ocupacion;
     String direccion;
+    String telefonocel;
+    String telefonocasa;
+    String correo;
 
     public Padres() {
 
     }
 
-    public Padres(int id, String nombrecompleto, String correo, String telefono, String direccion) {
+    public Padres(int id, String nombrecompleto, String ocupacion, String direccion, String telefonocel, String telefonocasa, String correo) {
         this.id = id;
         this.nombrecompleto = nombrecompleto;
-        this.correo = correo;
-        this.telefono = telefono;
+        this.ocupacion = ocupacion;
         this.direccion = direccion;
+        this.telefonocel = telefonocel;
+        this.telefonocasa = telefonocasa;
+        this.correo = correo;
+
     }
 
     public int getId() {
@@ -36,20 +41,12 @@ public class Padres {
         this.nombrecompleto = nombrecompleto;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getOcupacion() {
+        return ocupacion;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setOcupacion(String ocupacion) {
+        this.ocupacion = ocupacion;
     }
 
     public String getDireccion() {
@@ -60,4 +57,27 @@ public class Padres {
         this.direccion = direccion;
     }
 
+    public String getTelefonocel() {
+        return telefonocel;
+    }
+
+    public void setTelefonocel(String telefonocel) {
+        this.telefonocel = telefonocel;
+    }
+
+    public String getTelefonocasa() {
+        return telefonocasa;
+    }
+
+    public void setTelefonocasa(String telefonocasa) {
+        this.telefonocasa = telefonocasa;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
 }

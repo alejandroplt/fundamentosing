@@ -3,7 +3,6 @@ package modelos;
 public class Alumnos {
 
     int id;
-    String matricula;
     String nombrecom;
     String curp;
     String fechanaci;
@@ -18,9 +17,8 @@ public class Alumnos {
 
     }
 
-    public Alumnos(int id, String matricula, String nombrecom, String curp, String fechana, String sexo, String grpsangre, String numero, String nombrecompleto) {
+    public Alumnos(int id, String nombrecom, String curp, String fechana, String sexo, String grpsangre, String numero, String nombrecompleto) {
         this.id = id;
-        this.matricula = matricula;
         this.nombrecom = nombrecom;
         this.curp = curp;
         this.fechanaci = fechana;
@@ -37,14 +35,6 @@ public class Alumnos {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
     }
 
     public String getNombrecom() {

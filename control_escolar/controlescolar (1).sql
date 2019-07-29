@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-07-2019 a las 01:52:17
+-- Tiempo de generación: 29-07-2019 a las 04:01:57
 -- Versión del servidor: 10.3.16-MariaDB
 -- Versión de PHP: 7.3.6
 
@@ -50,6 +50,25 @@ INSERT INTO `administrador` (`id_usuario`, `n_completo`, `f_nacimiento`, `sexo`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `asignacion`
+--
+
+CREATE TABLE `asignacion` (
+  `id_asignacion` int(11) NOT NULL,
+  `id_grpdisponibles` int(11) NOT NULL,
+  `id_estudiante` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `asignacion`
+--
+
+INSERT INTO `asignacion` (`id_asignacion`, `id_grpdisponibles`, `id_estudiante`) VALUES
+(1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `docente`
 --
 
@@ -76,9 +95,9 @@ CREATE TABLE `docente` (
 --
 
 INSERT INTO `docente` (`id_docente`, `n_completo`, `cod_presu`, `telefono`, `direccion`, `correo`, `CURP`, `año_ingreSEP`, `año_ingreESC`, `año_ingreZN`, `f_nacimiento`, `RFC`, `cargo`, `no_ident`, `contraseña`) VALUES
-(2, ' Perez Mario', 'ADS', '95127870', 'DIRECCION', 'prznmaria@gmail.com', 'PRSMA', '1994-12-02', '2000-02-11', '2000-02-03', '2019-07-16', 'RFC', 'MAESTRO', '123', '123'),
-(15, 'Hernandez Perez ', 'CODIGO', '951', 'CALLE', 'CORREO', 'HPM293JJ', '2003-07-06', '2000-07-20', '2018-09-08', '1983-06-11', 'RFC', 'CARGO', '901', '901'),
-(17, 'Luis Mario Perez', 'HCKS23123KJ', '951283281', 'calle', 'luis@gmail.com', 'LMPP23JJW3', '2019-06-01', '2019-06-02', '2019-06-03', '2019-06-04', 'H3HD344', 'maestro', '5261', '5261');
+(1, 'Galli Munir Maximiliano Enrico', 'ADS', '95127872', 'Calle Arazola No. 110', 'hjmaximilianoenrico9@yopmail.c', 'GAMM890609HASLNX07', '1994-12-02', '2000-02-11', '2000-02-03', '2019-07-16', 'GAMM890609618', 'Maestro', '123', '123'),
+(2, 'Bueno Sustaeta Ainara M.', 'AS321', '95173628', 'Bulevar Calcedo No. 246', 'dfsustaeta5@yopmail.com', 'BUSA890609HTLNSI03', '2003-07-06', '2000-07-20', '2018-09-08', '1983-06-11', 'BUSA890609U35', 'Maestro', '901', '901'),
+(3, 'Sergio Bergaretxe Acarregui', 'CDSES2', '951283281', 'Hamilton No. 808', 'emacarregui12@yopmail.com', 'LMPP23JJW323DDEFW', '2019-06-01', '2019-06-02', '2019-06-03', '2019-06-04', 'H3HD344DS2E4G', 'Maestro', '5261', '5261');
 
 -- --------------------------------------------------------
 
@@ -103,9 +122,10 @@ CREATE TABLE `estudiante` (
 --
 
 INSERT INTO `estudiante` (`id_estudiante`, `matricula`, `n_completo`, `CURP`, `f_nacimiento`, `sexo`, `grp_sanguineo`, `id_grado`, `id_padre`) VALUES
-(2, '192311', 'Martinez Hernandez', 'MAHP061016HOCRRDA4', '2001-10-01', 'Masculino', 'O -', 2, 1),
-(3, '192302', 'Juarez Perez Luis LUIS', 'JUPJ120381HOCRRSR2', '1999-02-05', 'Masculino', 'O +', 3, 2),
-(17, '1234', 'Pedro Perez Perez', 'OSORTPP123', '2019-06-01', 'Masculino', 'AB +', 2, 2);
+(1, '192311', 'Martinez Hernandez Diego', 'MAHP061016HOCRRDA4', '2001-10-01', 'Masculino', 'O -', 1, 1),
+(2, '192302', 'Juarez Perez Luis LUIS', 'JUPJ120381HOCRRSR2', '1999-02-05', 'Masculino', 'O +', 3, 2),
+(3, '1234', 'Perez Perez Pedro', 'OSORTPP123', '2019-06-01', 'Masculino', 'AB +', 2, 3),
+(4, '432121', 'Perez Perez Maria', 'MSUEJFK123KJ', '1999-06-15', 'Femenino', 'B -', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -146,28 +166,7 @@ INSERT INTO `grupo_identificador` (`id_grupo`, `letra`) VALUES
 (1, 'A'),
 (2, 'B'),
 (3, 'C'),
-(10, 'D'),
-(12, 'E');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `gupos_disponibles`
---
-
-CREATE TABLE `gupos_disponibles` (
-  `id_grpdisponibles` int(11) NOT NULL,
-  `id_grado` int(11) NOT NULL,
-  `id_grupo` int(11) NOT NULL,
-  `id_docente` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `gupos_disponibles`
---
-
-INSERT INTO `gupos_disponibles` (`id_grpdisponibles`, `id_grado`, `id_grupo`, `id_docente`) VALUES
-(84, 1, 1, 2);
+(4, 'D');
 
 -- --------------------------------------------------------
 
@@ -239,7 +238,72 @@ CREATE TABLE `padre` (
 INSERT INTO `padre` (`id_padre`, `np_completo`, `correo`, `telefono`, `direccion`) VALUES
 (1, 'Perez Perez Maria', 'prznmaria@gmail.com', '9510901122', 'calle diaz ordaz'),
 (2, 'Martinez Diaz Jose', 'josemtz@gmail.com', '9512531147', 'calle zapata numero 23'),
-(4, 'Jose juan', 'jose@gmail.com', '951222', 'calle');
+(3, 'Jose juan Martinez', 'jose@gmail.com', '9512227661', 'California 5'),
+(4, 'Hugo', 'correo', '123', '123');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `primeraño`
+--
+
+CREATE TABLE `primeraño` (
+  `id_primeraño` int(11) NOT NULL,
+  `grado` varchar(3) NOT NULL,
+  `id_grupo` int(11) NOT NULL,
+  `id_estudiante` int(11) NOT NULL,
+  `id_docente` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `primeraño`
+--
+
+INSERT INTO `primeraño` (`id_primeraño`, `grado`, `id_grupo`, `id_estudiante`, `id_docente`) VALUES
+(1, '1º', 1, 1, 1),
+(2, '1º', 1, 4, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `segundoaño`
+--
+
+CREATE TABLE `segundoaño` (
+  `id_segundoaño` int(11) NOT NULL,
+  `grado` varchar(3) NOT NULL,
+  `id_grupo` int(11) NOT NULL,
+  `id_estudiante` int(11) NOT NULL,
+  `id_docente` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `segundoaño`
+--
+
+INSERT INTO `segundoaño` (`id_segundoaño`, `grado`, `id_grupo`, `id_estudiante`, `id_docente`) VALUES
+(1, '2º', 3, 3, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `terceraño`
+--
+
+CREATE TABLE `terceraño` (
+  `id_terceraño` int(11) NOT NULL,
+  `grado` varchar(3) NOT NULL,
+  `id_grupo` int(11) NOT NULL,
+  `id_estudiante` int(11) NOT NULL,
+  `id_docente` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `terceraño`
+--
+
+INSERT INTO `terceraño` (`id_terceraño`, `grado`, `id_grupo`, `id_estudiante`, `id_docente`) VALUES
+(1, '3º', 3, 2, 3);
 
 --
 -- Índices para tablas volcadas
@@ -250,6 +314,14 @@ INSERT INTO `padre` (`id_padre`, `np_completo`, `correo`, `telefono`, `direccion
 --
 ALTER TABLE `administrador`
   ADD PRIMARY KEY (`id_usuario`);
+
+--
+-- Indices de la tabla `asignacion`
+--
+ALTER TABLE `asignacion`
+  ADD PRIMARY KEY (`id_asignacion`),
+  ADD KEY `asginargrpdis` (`id_grpdisponibles`),
+  ADD KEY `asignaalum` (`id_estudiante`);
 
 --
 -- Indices de la tabla `docente`
@@ -278,15 +350,6 @@ ALTER TABLE `grupo_identificador`
   ADD PRIMARY KEY (`id_grupo`);
 
 --
--- Indices de la tabla `gupos_disponibles`
---
-ALTER TABLE `gupos_disponibles`
-  ADD PRIMARY KEY (`id_grpdisponibles`),
-  ADD KEY `asignargrados` (`id_grado`),
-  ADD KEY `asignargrupos` (`id_grupo`),
-  ADD KEY `asignardocente` (`id_docente`);
-
---
 -- Indices de la tabla `materia`
 --
 ALTER TABLE `materia`
@@ -300,6 +363,33 @@ ALTER TABLE `padre`
   ADD PRIMARY KEY (`id_padre`);
 
 --
+-- Indices de la tabla `primeraño`
+--
+ALTER TABLE `primeraño`
+  ADD PRIMARY KEY (`id_primeraño`),
+  ADD KEY `asigngrup` (`id_grupo`),
+  ADD KEY `asignest` (`id_estudiante`),
+  ADD KEY `asigdoce` (`id_docente`);
+
+--
+-- Indices de la tabla `segundoaño`
+--
+ALTER TABLE `segundoaño`
+  ADD PRIMARY KEY (`id_segundoaño`),
+  ADD KEY `asgrp` (`id_grupo`),
+  ADD KEY `asgest` (`id_estudiante`),
+  ADD KEY `asgdoc` (`id_docente`);
+
+--
+-- Indices de la tabla `terceraño`
+--
+ALTER TABLE `terceraño`
+  ADD PRIMARY KEY (`id_terceraño`),
+  ADD KEY `asignamoselgrupo` (`id_grupo`),
+  ADD KEY `asignamoselestudiante` (`id_estudiante`),
+  ADD KEY `asignamoseldocente` (`id_docente`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -308,6 +398,12 @@ ALTER TABLE `padre`
 --
 ALTER TABLE `administrador`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `asignacion`
+--
+ALTER TABLE `asignacion`
+  MODIFY `id_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `docente`
@@ -319,7 +415,7 @@ ALTER TABLE `docente`
 -- AUTO_INCREMENT de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
-  MODIFY `id_estudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_estudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `grado`
@@ -334,12 +430,6 @@ ALTER TABLE `grupo_identificador`
   MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT de la tabla `gupos_disponibles`
---
-ALTER TABLE `gupos_disponibles`
-  MODIFY `id_grpdisponibles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
-
---
 -- AUTO_INCREMENT de la tabla `materia`
 --
 ALTER TABLE `materia`
@@ -349,11 +439,30 @@ ALTER TABLE `materia`
 -- AUTO_INCREMENT de la tabla `padre`
 --
 ALTER TABLE `padre`
-  MODIFY `id_padre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_padre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `segundoaño`
+--
+ALTER TABLE `segundoaño`
+  MODIFY `id_segundoaño` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `terceraño`
+--
+ALTER TABLE `terceraño`
+  MODIFY `id_terceraño` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `asignacion`
+--
+ALTER TABLE `asignacion`
+  ADD CONSTRAINT `asginargrpdis` FOREIGN KEY (`id_grpdisponibles`) REFERENCES `gupos_disponibles` (`id_grpdisponibles`),
+  ADD CONSTRAINT `asignaalum` FOREIGN KEY (`id_estudiante`) REFERENCES `estudiante` (`id_estudiante`);
 
 --
 -- Filtros para la tabla `estudiante`
@@ -363,18 +472,34 @@ ALTER TABLE `estudiante`
   ADD CONSTRAINT `padro_tutor` FOREIGN KEY (`id_padre`) REFERENCES `padre` (`id_padre`);
 
 --
--- Filtros para la tabla `gupos_disponibles`
---
-ALTER TABLE `gupos_disponibles`
-  ADD CONSTRAINT `asignardocente` FOREIGN KEY (`id_docente`) REFERENCES `docente` (`id_docente`),
-  ADD CONSTRAINT `asignargrados` FOREIGN KEY (`id_grado`) REFERENCES `grado` (`id_grado`),
-  ADD CONSTRAINT `asignargrupos` FOREIGN KEY (`id_grupo`) REFERENCES `grupo_identificador` (`id_grupo`);
-
---
 -- Filtros para la tabla `materia`
 --
 ALTER TABLE `materia`
   ADD CONSTRAINT `grado_esco` FOREIGN KEY (`id_grado`) REFERENCES `grado` (`id_grado`);
+
+--
+-- Filtros para la tabla `primeraño`
+--
+ALTER TABLE `primeraño`
+  ADD CONSTRAINT `asigdoce` FOREIGN KEY (`id_docente`) REFERENCES `docente` (`id_docente`),
+  ADD CONSTRAINT `asignest` FOREIGN KEY (`id_estudiante`) REFERENCES `estudiante` (`id_estudiante`),
+  ADD CONSTRAINT `asigngrup` FOREIGN KEY (`id_grupo`) REFERENCES `grupo_identificador` (`id_grupo`);
+
+--
+-- Filtros para la tabla `segundoaño`
+--
+ALTER TABLE `segundoaño`
+  ADD CONSTRAINT `asgdoc` FOREIGN KEY (`id_docente`) REFERENCES `docente` (`id_docente`),
+  ADD CONSTRAINT `asgest` FOREIGN KEY (`id_estudiante`) REFERENCES `estudiante` (`id_estudiante`),
+  ADD CONSTRAINT `asgrp` FOREIGN KEY (`id_grupo`) REFERENCES `grupo_identificador` (`id_grupo`);
+
+--
+-- Filtros para la tabla `terceraño`
+--
+ALTER TABLE `terceraño`
+  ADD CONSTRAINT `asignamoseldocente` FOREIGN KEY (`id_docente`) REFERENCES `docente` (`id_docente`),
+  ADD CONSTRAINT `asignamoselestudiante` FOREIGN KEY (`id_estudiante`) REFERENCES `estudiante` (`id_estudiante`),
+  ADD CONSTRAINT `asignamoselgrupo` FOREIGN KEY (`id_grupo`) REFERENCES `grupo_identificador` (`id_grupo`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

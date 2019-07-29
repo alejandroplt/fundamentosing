@@ -22,6 +22,7 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
+        jMenu9 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -44,8 +45,10 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenu10 = new javax.swing.JMenu();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
@@ -60,6 +63,8 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        jMenu9.setText("jMenu9");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SISTEMA DE CONTROL ESCOLAR");
@@ -249,23 +254,37 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem5);
 
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tarea.png"))); // NOI18N
-        jMenuItem8.setText("ASIGNACION");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem8);
+        jMenu10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tarea.png"))); // NOI18N
+        jMenu10.setText("ASIGNACION");
 
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/accept.png"))); // NOI18N
-        jMenuItem9.setText("GRUPOS DISPONIBLES");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/numero-uno-en-un-circulo.png"))); // NOI18N
+        jMenuItem12.setText("PRIMER AÑO");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                jMenuItem12ActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem9);
+        jMenu10.add(jMenuItem12);
+
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/numero-dos-en-un-circulo.png"))); // NOI18N
+        jMenuItem11.setText("SEGUNDO AÑO");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem11);
+
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/numero-tres-en-un-circulo.png"))); // NOI18N
+        jMenuItem10.setText("TERCER AÑO");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem10);
+
+        jMenu6.add(jMenu10);
 
         jMenuBar1.add(jMenu6);
 
@@ -360,16 +379,20 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
 //        CentrarVentana(correo);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        AsignacionFrom asign = new AsignacionFrom();
-        CentrarVentana(asign);
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        PrimerAñoFrom pñ = new PrimerAñoFrom();
+        CentrarVentana(pñ);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        GruposDisponiblesForm grpdispo = new GruposDisponiblesForm();
-        CentrarVentana(grpdispo);
-        
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        SegundoAñoFrom sñ = new SegundoAñoFrom();
+        CentrarVentana(sñ);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        TercerAñoFrom tñ = new TercerAñoFrom();
+        CentrarVentana(tñ);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     void CentrarVentana(JInternalFrame frame) {
         VentanaPrincipal.add(frame);
@@ -405,7 +428,7 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
 //
 //        /* Create and display the form */
 //        invokeLater(() -> {
-            new PrincipalDirectivo().setVisible(true);
+        new PrincipalDirectivo().setVisible(true);
 //        });
     }
 
@@ -417,6 +440,7 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -424,16 +448,18 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

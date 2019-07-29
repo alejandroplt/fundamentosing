@@ -259,7 +259,7 @@ public class TercerAñoFrom extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tabla);
         if (tabla.getColumnModel().getColumnCount() > 0) {
             tabla.getColumnModel().getColumn(0).setPreferredWidth(40);
-            tabla.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tabla.getColumnModel().getColumn(1).setPreferredWidth(70);
             tabla.getColumnModel().getColumn(2).setPreferredWidth(70);
             tabla.getColumnModel().getColumn(3).setPreferredWidth(200);
             tabla.getColumnModel().getColumn(4).setPreferredWidth(200);

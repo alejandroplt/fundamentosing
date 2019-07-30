@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-07-2019 a las 02:17:20
+-- Tiempo de generación: 30-07-2019 a las 07:52:50
 -- Versión del servidor: 10.3.16-MariaDB
 -- Versión de PHP: 7.3.6
 
@@ -85,7 +85,8 @@ CREATE TABLE `controlcorreo` (
 
 INSERT INTO `controlcorreo` (`id_correo`, `correo_destino`, `asunto`, `fecha`) VALUES
 (1, 'alejandro.platas.02@gmail.com', 'PRUEBA', '29/07/2019'),
-(2, 'fgarciahernandez2@gmail.com', 'REUNION ESCOLAR', '29/07/2019');
+(2, 'fgarciahernandez2@gmail.com', 'REUNION ESCOLAR', '29/07/2019'),
+(3, 'familiasalazarperez@gmail.com', 'JUNTA DE PADRES DE FAMILIA', '29/07/2019');
 
 -- --------------------------------------------------------
 
@@ -188,6 +189,105 @@ INSERT INTO `grupo_identificador` (`id_grupo`, `letra`) VALUES
 (2, 'B'),
 (3, 'C'),
 (4, 'D');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `guardarcalificaciones1`
+--
+
+CREATE TABLE `guardarcalificaciones1` (
+  `id_guardacali1` int(11) NOT NULL,
+  `materias` varchar(50) NOT NULL DEFAULT '0',
+  `periodo1` varchar(5) NOT NULL,
+  `periodo2` varchar(5) NOT NULL,
+  `periodo3` varchar(5) NOT NULL,
+  `periodo4` varchar(5) NOT NULL,
+  `periodo5` varchar(5) NOT NULL,
+  `promediofinal` varchar(5) NOT NULL,
+  `nombrealumno` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `guardarcalificaciones1`
+--
+
+INSERT INTO `guardarcalificaciones1` (`id_guardacali1`, `materias`, `periodo1`, `periodo2`, `periodo3`, `periodo4`, `periodo5`, `promediofinal`, `nombrealumno`) VALUES
+(1, 'ESPAÑOL', '8', '8', '8', '8', '8', '8', 'Martinez Ruiz Maria'),
+(2, 'MATEMATICAS', '7', '8', '7', '9', '9', '8', 'Martinez Ruiz Maria'),
+(3, 'BIOLOGIA', '9', '8', '7', '8', '8', '8', 'Martinez Ruiz Maria'),
+(4, 'GEOGRAFIA', '9', '8', '9', '8', '8', '8.4', 'Martinez Ruiz Maria'),
+(5, 'INGLES', '7', '7', '8', '8', '8', '7.6', 'Martinez Ruiz Maria'),
+(6, 'ARTES', '9', '8', '9', '9', '9', '8.8', 'Martinez Ruiz Maria'),
+(7, 'FORMACION CIVICA Y ETICA', '9', '9', '8', '8', '8', '8.4', 'Martinez Ruiz Maria'),
+(8, 'HISTORIA', '9', '9', '9', '9', '9', '9', 'Martinez Ruiz Maria'),
+(9, 'EDUCACION FISICA', '7', '8', '8', '8', '8', '7.8', 'Martinez Ruiz Maria');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `guardarcalificaciones2`
+--
+
+CREATE TABLE `guardarcalificaciones2` (
+  `id_guardarcali2` int(11) NOT NULL,
+  `materias` varchar(50) NOT NULL DEFAULT '0',
+  `periodo1` varchar(5) NOT NULL DEFAULT '0',
+  `periodo2` varchar(5) NOT NULL DEFAULT '0',
+  `periodo3` varchar(5) NOT NULL DEFAULT '0',
+  `periodo4` varchar(5) NOT NULL DEFAULT '0',
+  `periodo5` varchar(5) NOT NULL DEFAULT '0',
+  `promediofinal` varchar(5) NOT NULL DEFAULT '0',
+  `nombrealumno` varchar(100) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `guardarcalificaciones2`
+--
+
+INSERT INTO `guardarcalificaciones2` (`id_guardarcali2`, `materias`, `periodo1`, `periodo2`, `periodo3`, `periodo4`, `periodo5`, `promediofinal`, `nombrealumno`) VALUES
+(1, 'ESPAÑOL II', '7', '8', '9', '9', '8', '8.2', 'Perez Perez Pedro'),
+(2, 'MATEMATICAS II', '8', '8', '9', '8', '8', '8.2', 'Perez Perez Pedro'),
+(3, 'CIENCIAS II', '7', '7', '7', '8', '8', '7.4', 'Perez Perez Pedro'),
+(4, 'GEOGRAFIA II', '9', '9', '9', '8', '8', '8.6', 'Perez Perez Pedro'),
+(5, 'INGLES II', '9', '8', '9', '8', '8', '8.4', 'Perez Perez Pedro'),
+(6, 'ARTES II', '8', '8', '8', '8', '8', '8', 'Perez Perez Pedro'),
+(7, 'EDUCACION FISICA II', '8', '8', '8', '8', '8', '8', 'Perez Perez Pedro'),
+(8, 'FORMCION CIVICA Y ETICA II', '8', '8', '9', '9', '9', '8.4', 'Perez Perez Pedro'),
+(9, 'HISTORIA II', '7', '7', '8', '8', '8', '7.6', 'Perez Perez Pedro');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `guardarcalificaciones3`
+--
+
+CREATE TABLE `guardarcalificaciones3` (
+  `id_guardarcali3` int(11) NOT NULL,
+  `materias` varchar(50) NOT NULL DEFAULT '0',
+  `periodo1` varchar(5) NOT NULL DEFAULT '0',
+  `periodo2` varchar(5) NOT NULL DEFAULT '0',
+  `periodo3` varchar(5) NOT NULL DEFAULT '0',
+  `periodo4` varchar(5) NOT NULL DEFAULT '0',
+  `periodo5` varchar(5) NOT NULL DEFAULT '0',
+  `promediofinal` varchar(5) NOT NULL DEFAULT '0',
+  `nombrealumno` varchar(100) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `guardarcalificaciones3`
+--
+
+INSERT INTO `guardarcalificaciones3` (`id_guardarcali3`, `materias`, `periodo1`, `periodo2`, `periodo3`, `periodo4`, `periodo5`, `promediofinal`, `nombrealumno`) VALUES
+(1, 'ESPAÑOL III', '8', '8', '8', '8', '8', '8', 'Juarez Perez Luis'),
+(2, 'MATEMATICAS III', '8', '8', '9', '9', '9', '8.6', 'Juarez Perez Luis'),
+(3, 'CIENCIAS III', '7', '7', '8', '8', '8', '7.6', 'Juarez Perez Luis'),
+(4, 'GEOGRAFIA III', '9', '7', '9', '8', '8', '8.2', 'Juarez Perez Luis'),
+(5, 'INGLES III', '7', '9', '8', '9', '9', '8.4', 'Juarez Perez Luis'),
+(6, 'ARTES III', '8', '8', '8', '8', '8', '8', 'Juarez Perez Luis'),
+(7, 'FORMACION CIVICA Y ETICA III', '9', '9', '9', '9', '8', '8.8', 'Juarez Perez Luis'),
+(8, 'HISTORIA III', '7', '8', '7', '8', '8', '7.6', 'Juarez Perez Luis'),
+(9, 'EDUCACION FISICA III', '8', '8', '8', '8', '8', '8', 'Juarez Perez Luis');
 
 -- --------------------------------------------------------
 
@@ -380,6 +480,24 @@ ALTER TABLE `grupo_identificador`
   ADD PRIMARY KEY (`id_grupo`);
 
 --
+-- Indices de la tabla `guardarcalificaciones1`
+--
+ALTER TABLE `guardarcalificaciones1`
+  ADD PRIMARY KEY (`id_guardacali1`);
+
+--
+-- Indices de la tabla `guardarcalificaciones2`
+--
+ALTER TABLE `guardarcalificaciones2`
+  ADD PRIMARY KEY (`id_guardarcali2`);
+
+--
+-- Indices de la tabla `guardarcalificaciones3`
+--
+ALTER TABLE `guardarcalificaciones3`
+  ADD PRIMARY KEY (`id_guardarcali3`);
+
+--
 -- Indices de la tabla `materia`
 --
 ALTER TABLE `materia`
@@ -439,7 +557,7 @@ ALTER TABLE `asignacion`
 -- AUTO_INCREMENT de la tabla `controlcorreo`
 --
 ALTER TABLE `controlcorreo`
-  MODIFY `id_correo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_correo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `docente`
@@ -464,6 +582,24 @@ ALTER TABLE `grado`
 --
 ALTER TABLE `grupo_identificador`
   MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `guardarcalificaciones1`
+--
+ALTER TABLE `guardarcalificaciones1`
+  MODIFY `id_guardacali1` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `guardarcalificaciones2`
+--
+ALTER TABLE `guardarcalificaciones2`
+  MODIFY `id_guardarcali2` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT de la tabla `guardarcalificaciones3`
+--
+ALTER TABLE `guardarcalificaciones3`
+  MODIFY `id_guardarcali3` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `materia`

@@ -243,6 +243,7 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem7);
 
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/numero-uno-en-un-circulo.png"))); // NOI18N
         jMenuItem8.setText("CONTROL DE CALIFICACIONES 1º");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,10 +252,22 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem8);
 
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/numero-dos-en-un-circulo.png"))); // NOI18N
         jMenuItem9.setText("CONTROL DE CALIFICACIONES 2º");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem9);
 
+        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/numero-tres-en-un-circulo.png"))); // NOI18N
         jMenuItem13.setText("CONTROL DE CALIFICACIONES 3º");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem13);
 
         jMenuBar1.add(jMenu5);
@@ -395,8 +408,11 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        CalificacionFrom cali = new CalificacionFrom();
-        CentrarVentana(cali);
+        RegistroCalificaciones1From regis = new RegistroCalificaciones1From();
+        CentrarVentana(regis);
+
+//        CalificacionFrom cali = new CalificacionFrom();
+//        CentrarVentana(cali);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -422,7 +438,7 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        CalificacionesPrimeroFrom cpf = new CalificacionesPrimeroFrom();
+        VerRegistroCalificaciones1 cpf = new VerRegistroCalificaciones1();
         CentrarVentana(cpf);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
@@ -430,6 +446,16 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         ControlEnvios cpe = new ControlEnvios();
         CentrarVentana(cpe);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        VerRegistroCalificaciones2 cpf = new VerRegistroCalificaciones2();
+        CentrarVentana(cpf);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        VerRegistroCalificaciones3 cpf = new VerRegistroCalificaciones3();
+        CentrarVentana(cpf); // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     void CentrarVentana(JInternalFrame frame) {
         VentanaPrincipal.add(frame);

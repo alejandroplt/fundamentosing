@@ -70,8 +70,8 @@ public class ControlEnvios extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tabla);
         if (tabla.getColumnModel().getColumnCount() > 0) {
             tabla.getColumnModel().getColumn(0).setPreferredWidth(40);
-            tabla.getColumnModel().getColumn(1).setPreferredWidth(300);
-            tabla.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tabla.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tabla.getColumnModel().getColumn(2).setPreferredWidth(300);
             tabla.getColumnModel().getColumn(3).setPreferredWidth(100);
         }
 

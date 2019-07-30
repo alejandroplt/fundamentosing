@@ -219,12 +219,12 @@ public class PrincipalDocente extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu8MouseClicked
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        GruposDocentesFrom grupos = new GruposDocentesFrom(); 
+        GruposDocentesFrom grupos = new GruposDocentesFrom();
         CentrarVentana(grupos);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        CalificacionesDocenteFrom1 cali = new CalificacionesDocenteFrom1();
+        RegistroCalificaciones1From cali = new RegistroCalificaciones1From();
         CentrarVentana(cali);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
@@ -260,7 +260,7 @@ public class PrincipalDocente extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

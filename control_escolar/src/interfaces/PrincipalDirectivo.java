@@ -42,7 +42,6 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -234,15 +233,6 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/school_114359.png"))); // NOI18N
         jMenu5.setText("CALIFICACIONES");
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/plan.png"))); // NOI18N
-        jMenuItem7.setText("CONTROL DE CALIFICACIONES");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem7);
-
         jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/numero-uno-en-un-circulo.png"))); // NOI18N
         jMenuItem8.setText("CONTROL DE CALIFICACIONES 1º");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -407,14 +397,6 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         CentrarVentana(grupos);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        RegistroCalificaciones1From regis = new RegistroCalificaciones1From();
-        CentrarVentana(regis);
-
-//        CalificacionFrom cali = new CalificacionFrom();
-//        CentrarVentana(cali);
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
-
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         panel lg = new panel();
         lg.setVisible(true);
@@ -524,7 +506,6 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;

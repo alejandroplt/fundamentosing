@@ -26,23 +26,23 @@ public class PadresForm extends javax.swing.JInternalFrame {
     public PadresForm() {
         initComponents();
         listar();
-        holders();
+//        holders();
         //Permite centrar el Header(titulos) de la tabla.
         TableCellRenderer rendererFromHeader = tabla.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
         headerLabel.setHorizontalAlignment(CENTER);
     }
 
-    void holders() {
-        PlaceHolder holder;
-        holder = new PlaceHolder(txtNombreCompleto, "Ingrese nombre iniciando por apellido");
-        holder = new PlaceHolder(txtOcupacion, "Ingrese una ocupacion");
-        holder = new PlaceHolder(txtDireccion, "Ingrese direccion completa");
-        holder = new PlaceHolder(txtTeleCelu, "Ingrese un número de celular");
-        holder = new PlaceHolder(txtCelCasa, "Ingrese un número local");
-        holder = new PlaceHolder(txtCorreo, "Ingrese un correo válido");
-
-    }
+//    void holders() {
+//        PlaceHolder holder;
+//        holder = new PlaceHolder(txtNombreCompleto, "Ingrese nombre iniciando por apellido");
+//        holder = new PlaceHolder(txtOcupacion, "Ingrese una ocupacion");
+//        holder = new PlaceHolder(txtDireccion, "Ingrese direccion completa");
+//        holder = new PlaceHolder(txtTeleCelu, "Ingrese un número de celular");
+//        holder = new PlaceHolder(txtCelCasa, "Ingrese un número local");
+//        holder = new PlaceHolder(txtCorreo, "Ingrese un correo válido");
+//
+//    }
 
     void listar() {
         List<Padres> lista = dao.listar();

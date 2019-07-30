@@ -41,7 +41,7 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
         listar();
         mostrargrado();
         mostrarpadre();
-        holders();
+       // holders();
         //Permite centrar el Header(titulos) de la tabla.
         TableCellRenderer rendererFromHeader = tabla.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
@@ -49,11 +49,11 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
 
     }
 
-    void holders() {
-        PlaceHolder holder;
-        holder = new PlaceHolder(txtNombreCompleto, "Ingrese nombre iniciando por apellido");
-        holder = new PlaceHolder(txtCurp, "Ingrese CURP utilizando mayúsculas");
-    }
+//    void holders() {
+//        PlaceHolder holder;
+//        holder = new PlaceHolder(txtNombreCompleto, "Ingrese nombre iniciando por apellido");
+//        holder = new PlaceHolder(txtCurp, "Ingrese CURP utilizando mayúsculas");
+//    }
 
     void listar() {
         List<Alumnos> lista = dao.listar();

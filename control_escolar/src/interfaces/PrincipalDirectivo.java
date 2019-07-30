@@ -54,6 +54,7 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -318,6 +319,15 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem6);
 
+        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar_semestre.png"))); // NOI18N
+        jMenuItem14.setText("CONTROL DE ENVIOS");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem14);
+
         jMenuBar1.add(jMenu7);
 
         jMenu8.setBackground(new java.awt.Color(31, 37, 53));
@@ -390,7 +400,7 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        Login lg = new Login();
+        panel lg = new panel();
         lg.setVisible(true);
 //        CorreoFrom correo = new CorreoFrom();
 //        CentrarVentana(correo);
@@ -415,6 +425,11 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         CalificacionesPrimeroFrom cpf = new CalificacionesPrimeroFrom();
         CentrarVentana(cpf);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        ControlEnvios cpe = new ControlEnvios();
+        CentrarVentana(cpe);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     void CentrarVentana(JInternalFrame frame) {
         VentanaPrincipal.add(frame);
@@ -477,6 +492,7 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-07-2019 a las 18:44:56
+-- Tiempo de generación: 30-07-2019 a las 02:17:20
 -- Versión del servidor: 10.3.16-MariaDB
 -- Versión de PHP: 7.3.6
 
@@ -69,6 +69,27 @@ INSERT INTO `asignacion` (`id_asignacion`, `id_grpdisponibles`, `id_estudiante`)
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `controlcorreo`
+--
+
+CREATE TABLE `controlcorreo` (
+  `id_correo` int(11) NOT NULL,
+  `correo_destino` varchar(100) NOT NULL,
+  `asunto` varchar(200) NOT NULL,
+  `fecha` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `controlcorreo`
+--
+
+INSERT INTO `controlcorreo` (`id_correo`, `correo_destino`, `asunto`, `fecha`) VALUES
+(1, 'alejandro.platas.02@gmail.com', 'PRUEBA', '29/07/2019'),
+(2, 'fgarciahernandez2@gmail.com', 'REUNION ESCOLAR', '29/07/2019');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `docente`
 --
 
@@ -107,7 +128,6 @@ INSERT INTO `docente` (`id_docente`, `n_completo`, `cod_presu`, `telefono`, `dir
 
 CREATE TABLE `estudiante` (
   `id_estudiante` int(11) NOT NULL,
-  `matricula` varchar(10) NOT NULL,
   `n_completo` varchar(50) NOT NULL,
   `CURP` varchar(18) NOT NULL,
   `f_nacimiento` varchar(15) NOT NULL,
@@ -121,11 +141,12 @@ CREATE TABLE `estudiante` (
 -- Volcado de datos para la tabla `estudiante`
 --
 
-INSERT INTO `estudiante` (`id_estudiante`, `matricula`, `n_completo`, `CURP`, `f_nacimiento`, `sexo`, `grp_sanguineo`, `id_grado`, `id_padre`) VALUES
-(1, '192311', 'Martinez Hernandez Diego', 'MAHP061016HOCRRDA4', '2001-10-01', 'Masculino', 'O -', 1, 1),
-(2, '192302', 'Juarez Perez Luis LUIS', 'JUPJ120381HOCRRSR2', '1999-02-05', 'Masculino', 'O +', 3, 2),
-(3, '1234', 'Perez Perez Pedro', 'OSORTPP123', '2019-06-01', 'Masculino', 'AB +', 2, 3),
-(4, '432121', 'Perez Perez Maria', 'MSUEJFK123KJ', '1999-06-15', 'Femenino', 'B -', 1, 3);
+INSERT INTO `estudiante` (`id_estudiante`, `n_completo`, `CURP`, `f_nacimiento`, `sexo`, `grp_sanguineo`, `id_grado`, `id_padre`) VALUES
+(1, 'Martinez Ruiz Diego', 'MAHP061016HOCRRDA4', '2001-10-01', 'Masculino', 'O -', 1, 1),
+(2, 'Juarez Perez Luis', 'JUPJ120381HOCRRSR2', '1999-02-05', 'Masculino', 'O +', 3, 3),
+(3, 'Perez Perez Pedro', 'OSORTPP123', '2019-06-01', 'Masculino', 'AB +', 2, 3),
+(4, 'Perez Perez Maria', 'MSUEJFK123KJ', '1999-06-15', 'Femenino', 'B -', 1, 3),
+(31, 'Martinez Ruiz Maria', 'MAROSP2O3991', '2001-6-13', 'Femenino', 'A +', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -226,20 +247,23 @@ INSERT INTO `materia` (`id_materia`, `nombre`, `id_grado`) VALUES
 CREATE TABLE `padre` (
   `id_padre` int(11) NOT NULL,
   `np_completo` varchar(50) NOT NULL,
-  `correo` varchar(30) NOT NULL,
-  `telefono` varchar(10) NOT NULL,
-  `direccion` varchar(150) NOT NULL
+  `ocupacion` varchar(50) NOT NULL,
+  `direccion` varchar(150) NOT NULL,
+  `telefonocel` varchar(10) NOT NULL,
+  `telefonocasa` varchar(10) NOT NULL,
+  `correo` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `padre`
 --
 
-INSERT INTO `padre` (`id_padre`, `np_completo`, `correo`, `telefono`, `direccion`) VALUES
-(1, 'Perez Perez Maria', 'prznmaria@gmail.com', '9510901122', 'calle diaz ordaz'),
-(2, 'Martinez Diaz Jose', 'josemtz@gmail.com', '9512531147', 'calle zapata numero 23'),
-(3, 'Jose juan Martinez', 'jose@gmail.com', '9512227661', 'California 5'),
-(4, 'Hugo', 'correo', '123', '123');
+INSERT INTO `padre` (`id_padre`, `np_completo`, `ocupacion`, `direccion`, `telefonocel`, `telefonocasa`, `correo`) VALUES
+(1, 'Perez Perez Maria', 'comerciante', 'calle diaz ordaz', '9510901122', '5182838', 'prznmaria@gmail.com'),
+(2, 'Martinez Diaz Jose', 'arquitecto', 'calle zapata numero 23', '9512531147', '5173821', 'josemtz@gmail.com'),
+(3, 'Jose juan Martinez', 'doctor', 'California 5', '9512227661', '51728328', 'jose@gmail.com'),
+(4, 'Hernandez Ruiz Hugo', 'carpintero', 'calle los olivos', '9512378123', '51823931', 'hugo@gmail.com'),
+(8, 'Jimenez Perez Daniela', 'contador', 'calle los huertos', '9514723812', '51223812', 'daniela.jm@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -324,6 +348,12 @@ ALTER TABLE `asignacion`
   ADD KEY `asignaalum` (`id_estudiante`);
 
 --
+-- Indices de la tabla `controlcorreo`
+--
+ALTER TABLE `controlcorreo`
+  ADD PRIMARY KEY (`id_correo`);
+
+--
 -- Indices de la tabla `docente`
 --
 ALTER TABLE `docente`
@@ -406,6 +436,12 @@ ALTER TABLE `asignacion`
   MODIFY `id_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `controlcorreo`
+--
+ALTER TABLE `controlcorreo`
+  MODIFY `id_correo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `docente`
 --
 ALTER TABLE `docente`
@@ -415,7 +451,7 @@ ALTER TABLE `docente`
 -- AUTO_INCREMENT de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
-  MODIFY `id_estudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_estudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `grado`
@@ -439,7 +475,7 @@ ALTER TABLE `materia`
 -- AUTO_INCREMENT de la tabla `padre`
 --
 ALTER TABLE `padre`
-  MODIFY `id_padre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_padre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `segundoaño`

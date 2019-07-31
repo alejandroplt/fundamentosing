@@ -16,7 +16,7 @@ public class VerCali1DAO implements CRUD {
     @Override
     public List listar() {
         List<VerCali1> lista = new ArrayList<>();
-        String sql = "select * from guardarcalificaciones1";
+        String sql = "select * from guardacalificacioness1";
         try {
             con = acceso.Conectar();
             ps = con.prepareStatement(sql);

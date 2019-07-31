@@ -8,8 +8,8 @@ public class Alumnos {
     String fechanaci;
     String sexo;
     String grpsangre;
-//    int idgrado;
-    String numero;
+    int idgrado;
+//    String numero;
 //    int idpadre;
     String NombreCompleto;
 
@@ -17,15 +17,15 @@ public class Alumnos {
 
     }
 
-    public Alumnos(int id, String nombrecom, String curp, String fechana, String sexo, String grpsangre, String numero, String nombrecompleto) {
+    public Alumnos(int id, String nombrecom, String curp, String fechana, String sexo, String grpsangre, int idgrado, String nombrecompleto) {
         this.id = id;
         this.nombrecom = nombrecom;
         this.curp = curp;
         this.fechanaci = fechana;
         this.sexo = sexo;
         this.grpsangre = grpsangre;
-//        this.idgrado = idgrado;
-        this.numero = numero;
+        this.idgrado = idgrado;
+//        this.numero = numero;
         this.NombreCompleto = nombrecom;
     }
 
@@ -77,20 +77,20 @@ public class Alumnos {
         this.grpsangre = grpsangre;
     }
 
-//    public int getIdgrado() {
-//        return idgrado;
-//    }
-//
-//    public void setIdgrado(int idgrado) {
-//        this.idgrado = idgrado;
-//    }
-    public String getNumero() {
-        return numero;
+    public int getIdgrado() {
+        return idgrado;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setIdgrado(int idgrado) {
+        this.idgrado = idgrado;
     }
+//    public String getNumero() {
+//        return numero;
+//    }
+//
+//    public void setNumero(String numero) {
+//        this.numero = numero;
+//    }
 
     public String getNombreCompleto() {
         return NombreCompleto;

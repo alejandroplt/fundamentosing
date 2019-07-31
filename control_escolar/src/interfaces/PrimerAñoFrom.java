@@ -41,6 +41,9 @@ public class PrimerAñoFrom extends javax.swing.JInternalFrame {
         mostrargrupo();
         mostrarestudi();
         mostrardoce();
+        cmb_idgrupo.setVisible(false);
+        cmb_iddocente.setVisible(false);
+        cmb_idlumno.setVisible(false);
         //Permite centrar el Header(titulos) de la tabla.
         TableCellRenderer rendererFromHeader = tabla.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
@@ -52,9 +55,9 @@ public class PrimerAñoFrom extends javax.swing.JInternalFrame {
         modelo = (DefaultTableModel) tabla.getModel();
         Object[] ob = new Object[5];
         for (int i = 0; i < lista.size(); i++) {
-            ob[0] = lista.get(i).getId();
+            ob[0] = lista.get(i).getId(); 
             ob[1] = lista.get(i).getGrado();
-            ob[2] = lista.get(i).getGrupo();
+            ob[2] = lista.get(i).getGrupo(); 
             ob[3] = lista.get(i).getNombrealumno();
             ob[4] = lista.get(i).getDocente();
             modelo.addRow(ob);
@@ -70,6 +73,8 @@ public class PrimerAñoFrom extends javax.swing.JInternalFrame {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ComboGrupo.addItem(rs.getString("letra"));
+                cmb_idgrupo.addItem(rs.getString("id_grupo"));
+                
             }
         } catch (SQLException ex) {
 
@@ -84,6 +89,7 @@ public class PrimerAñoFrom extends javax.swing.JInternalFrame {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ComboAlumno.addItem(rs.getString("n_completo"));
+                cmb_idlumno.addItem(rs.getString("id_estudiante"));
             }
         } catch (SQLException ex) {
 
@@ -99,6 +105,7 @@ public class PrimerAñoFrom extends javax.swing.JInternalFrame {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ComboDocente.addItem(rs.getString("n_completo"));
+                cmb_iddocente.addItem(rs.getString("id_docente"));  
             }
         } catch (SQLException ex) {
 
@@ -121,6 +128,10 @@ public class PrimerAñoFrom extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        cmb_idgrupo = new javax.swing.JComboBox<>();
+        cmb_iddocente = new javax.swing.JComboBox<>();
+        cmb_idlumno = new javax.swing.JComboBox<>();
+        txt_id_grado = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -147,10 +158,25 @@ public class PrimerAñoFrom extends javax.swing.JInternalFrame {
         txtGrado.setText("1º");
 
         ComboGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE" }));
+        ComboGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboGrupoActionPerformed(evt);
+            }
+        });
 
         ComboAlumno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE" }));
+        ComboAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboAlumnoActionPerformed(evt);
+            }
+        });
 
         ComboDocente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE" }));
+        ComboDocente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboDocenteActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar-usuario.png"))); // NOI18N
@@ -173,13 +199,27 @@ public class PrimerAñoFrom extends javax.swing.JInternalFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/28-2-210.jpg"))); // NOI18N
 
+        cmb_idgrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID_GRUPO" }));
+        cmb_idgrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_idgrupoActionPerformed(evt);
+            }
+        });
+
+        cmb_iddocente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID_DOCENTE" }));
+
+        cmb_idlumno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID_ALUMNO" }));
+
+        txt_id_grado.setForeground(new java.awt.Color(214, 217, 223));
+        txt_id_grado.setText("1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -187,20 +227,32 @@ public class PrimerAñoFrom extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ComboGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ComboGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmb_idgrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_id_grado))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ComboDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(91, 91, 91))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmb_idlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_iddocente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -212,7 +264,8 @@ public class PrimerAñoFrom extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_id_grado))
                         .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(ComboGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,9 +284,15 @@ public class PrimerAñoFrom extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnGuardar)
                         .addGap(12, 12, 12)
-                        .addComponent(btnEliminar)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnEliminar)
+                            .addComponent(cmb_idgrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmb_idlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmb_iddocente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
@@ -336,20 +395,45 @@ public class PrimerAñoFrom extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tablaMouseClicked
 
-    void agregar() {
-        if (txtGrado.getText().equals("")) {
-            showMessageDialog(this, "Se deben llenar todos los campos");
-        } else {
-            String grado = txtGrado.getText();
-            int combgrupo = ComboGrupo.getSelectedIndex();
-            int combalu = ComboAlumno.getSelectedIndex();
-            int combdoc = ComboDocente.getSelectedIndex();
+    private void cmb_idgrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_idgrupoActionPerformed
+        // TODO add your handling code here:
+        int indice_cmbalumno=ComboAlumno.getSelectedIndex();
+        cmb_idlumno.setSelectedIndex(indice_cmbalumno);
+        
+    }//GEN-LAST:event_cmb_idgrupoActionPerformed
 
-            Object[] ob = new Object[4];
-            ob[0] = grado;
-            ob[1] = combgrupo;
-            ob[2] = combalu;
-            ob[3] = combdoc;
+    private void ComboGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboGrupoActionPerformed
+        // TODO add your handling code here:
+        int indice_cmbgrupo=ComboGrupo.getSelectedIndex();
+        cmb_idgrupo.setSelectedIndex(indice_cmbgrupo);
+    }//GEN-LAST:event_ComboGrupoActionPerformed
+
+    private void ComboAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboAlumnoActionPerformed
+        // TODO add your handling code here:
+        
+        int indice_cmbalumno=ComboAlumno.getSelectedIndex();
+        cmb_idlumno.setSelectedIndex(indice_cmbalumno); 
+    }//GEN-LAST:event_ComboAlumnoActionPerformed
+
+    private void ComboDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboDocenteActionPerformed
+        // TODO add your handling code here:
+        int indice_cmbdocente=ComboDocente.getSelectedIndex();
+        cmb_iddocente.setSelectedIndex(indice_cmbdocente); 
+        
+    }//GEN-LAST:event_ComboDocenteActionPerformed
+
+    void agregar() {
+        if (cmb_idgrupo.getSelectedIndex()==0||cmb_idlumno.getSelectedIndex()==0||cmb_iddocente.getSelectedIndex()==0) {
+            showMessageDialog(this, "Se deben llenar todos los campos");
+        } else { 
+            int combgrupo = Integer.parseInt(cmb_idgrupo.getSelectedItem().toString());//ComboGrupo.getSelectedIndex();
+            int combalu = Integer.parseInt(cmb_idlumno.getSelectedItem().toString());//ComboAlumno.getSelectedIndex();
+            int combdoc = Integer.parseInt(cmb_iddocente.getSelectedItem().toString());//ComboDocente.getSelectedIndex();
+   
+            Object[] ob = new Object[3];
+            ob[0] = combgrupo; 
+            ob[1] = combalu;
+            ob[2] = combdoc;
             dao.add(ob);
             
             showMessageDialog(this, "Usuario registrado exitosamente");
@@ -400,6 +484,9 @@ public class PrimerAñoFrom extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> ComboGrupo;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JComboBox<String> cmb_iddocente;
+    private javax.swing.JComboBox<String> cmb_idgrupo;
+    private javax.swing.JComboBox<String> cmb_idlumno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -410,5 +497,6 @@ public class PrimerAñoFrom extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla;
     private javax.swing.JTextField txtGrado;
+    private javax.swing.JLabel txt_id_grado;
     // End of variables declaration//GEN-END:variables
 }

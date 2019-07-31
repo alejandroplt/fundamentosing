@@ -1,11 +1,124 @@
-
 package interfaces;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import modelos.ControlCorreo;
+import modelos.Docentes;
+import modelos.conexion;
 
 public class GruposDocentesFrom extends javax.swing.JInternalFrame {
 
+    Docentes docente = new Docentes();
+    DefaultTableModel modelo = new DefaultTableModel();
+    Connection con;
+    conexion acceso = new conexion();
+    PreparedStatement ps;
+    ResultSet rs;
+
     public GruposDocentesFrom() {
         initComponents();
+    }
+
+    public int IDDocente_actual() {
+        return docente.getId();
+    }
+
+    public boolean da_clases_a_primero(int id_docente) {
+        boolean existe = false;
+        String sql = ("SELECT * FROM  primeraño WHERE  id_docente=?");
+        try {
+            con = acceso.Conectar();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id_docente);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                //existe 
+                existe = true;
+            } else {
+                //no existe
+                existe = false;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return existe;
+
+    }
+
+    public boolean da_clases_a_segundo(int id_docente) {
+        boolean existe = false;
+        String sql = ("SELECT * FROM  segundoaño WHERE  id_docente=?");
+        try {
+            con = acceso.Conectar();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id_docente);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                //existe 
+                existe = true;
+            } else {
+                //no existe
+                existe = false;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return existe;
+
+    }
+
+    public boolean da_clases_a_tercero(int id_docente) {
+        boolean existe = false;
+        String sql = ("SELECT * FROM  terceraño WHERE  id_docente=?");
+        try {
+            con = acceso.Conectar();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id_docente);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                //existe 
+                existe = true;
+            } else {
+                //no existe
+                existe = false;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return existe;
+
+    }
+
+    void listar() {
+
+        if (da_clases_a_primero(IDDocente_actual()) == true) {
+//            
+
+        }
+        if (da_clases_a_segundo(IDDocente_actual()) == true) {
+
+        }
+        if (da_clases_a_tercero(IDDocente_actual()) == true) {
+
+        }
+
+//        List<PrimerAño> lista = dao.listar();
+//        modelo = (DefaultTableModel) tabla.getModel();
+//        Object[] ob = new Object[5];
+//        for (int i = 0; i < lista.size(); i++) {
+//            ob[0] = lista.get(i).getId(); 
+//            ob[1] = lista.get(i).getGrado();
+//            ob[2] = lista.get(i).getGrupo(); 
+//            ob[3] = lista.get(i).getNombrealumno();
+//            ob[4] = lista.get(i).getDocente();
+//            modelo.addRow(ob);
+//        }
+//        tabla.setModel(modelo);
+//    }
     }
 
     @SuppressWarnings("unchecked")
@@ -14,8 +127,8 @@ public class GruposDocentesFrom extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        tabla = new javax.swing.JTable();
+        grado = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -25,7 +138,7 @@ public class GruposDocentesFrom extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "Martinez Ruiz Diego"},
                 {"2", "Perez Perez Maria"}
@@ -34,15 +147,15 @@ public class GruposDocentesFrom extends javax.swing.JInternalFrame {
                 "ID", "NOMBRE DEL ALUMNO"
             }
         ));
-        jTable1.setToolTipText("");
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(300);
+        tabla.setToolTipText("");
+        tabla.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
+        jScrollPane1.setViewportView(tabla);
+        if (tabla.getColumnModel().getColumnCount() > 0) {
+            tabla.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tabla.getColumnModel().getColumn(1).setPreferredWidth(300);
         }
 
-        jLabel1.setText("GRADO ASIGNADO");
+        grado.setText("GRADO ASIGNADO");
 
         jTextField1.setEditable(false);
         jTextField1.setText("1°");
@@ -62,7 +175,7 @@ public class GruposDocentesFrom extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addComponent(grado)
                 .addGap(18, 18, 18)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -80,7 +193,7 @@ public class GruposDocentesFrom extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
+                        .addComponent(grado)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -109,12 +222,12 @@ public class GruposDocentesFrom extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel grado;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

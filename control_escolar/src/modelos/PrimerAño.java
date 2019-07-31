@@ -4,19 +4,19 @@ public class PrimerAño {
 
     int id;
     String grado;
-    int grupo;
-    int nombrealumno;
-    int docente;
+    String grupo;
+    String nombrealumno;
+    String docente;
 
     public PrimerAño() {
 
     }
 
-    public PrimerAño(int id, String grado, int grupo, int nombrealu, int docente) {
+    public PrimerAño(int id, String grado, String grupo, String nombrealumno, String docente) {
         this.id = id;
         this.grado = grado;
         this.grupo = grupo;
-        this.nombrealumno = nombrealu;
+        this.nombrealumno = nombrealumno;
         this.docente = docente;
     }
 
@@ -24,39 +24,41 @@ public class PrimerAño {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getGrado() {
         return grado;
+    }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public String getNombrealumno() {
+        return nombrealumno;
+    }
+
+    public String getDocente() {
+        return docente;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setGrado(String grado) {
         this.grado = grado;
     }
 
-    public int getGrupo() {
-        return grupo;
-    }
-
-    public void setGrupo(int grupo) {
+    public void setGrupo(String grupo) {
         this.grupo = grupo;
     }
 
-    public int getNombrealumno() {
-        return nombrealumno;
-    }
-
-    public void setNombrealumno(int nombrealumno) {
+    public void setNombrealumno(String nombrealumno) {
         this.nombrealumno = nombrealumno;
     }
 
-    public int getDocente() {
-        return docente;
-    }
-
-    public void setDocente(int docente) {
+    public void setDocente(String docente) {
         this.docente = docente;
     }
+
+   
 }

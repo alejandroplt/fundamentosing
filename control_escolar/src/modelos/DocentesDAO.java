@@ -12,6 +12,9 @@ public class DocentesDAO implements CRUD {
     conexion acceso = new conexion();
     PreparedStatement ps;
     ResultSet rs;
+    int id_docente=0;
+
+    
 
     public Docentes ValidarAdmin(String contra, String nombreus) {
         Docentes ev = new Docentes();
@@ -23,6 +26,7 @@ public class DocentesDAO implements CRUD {
             ps.setString(2, nombreus);
             rs = ps.executeQuery();
             while (rs.next()) {
+                
                 ev.setId(rs.getInt(1));
                 ev.setNombrecompleto(rs.getString(2));
                 ev.setCodigo_presu(rs.getString(3));
@@ -38,6 +42,8 @@ public class DocentesDAO implements CRUD {
                 ev.setCargo(rs.getString(13));
                 ev.setNo_identifi(rs.getString(14));
                 ev.setContraseña(rs.getString(15));
+                
+                
 
             }
         } catch (Exception e) {

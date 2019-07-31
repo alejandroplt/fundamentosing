@@ -32,6 +32,7 @@ public class UsuariosForm extends javax.swing.JInternalFrame {
     public UsuariosForm() {
         initComponents();
         listar();
+        btnNuevo.setEnabled(false);
         //Permite centrar el Header(titulos) de la tabla.
         TableCellRenderer rendererFromHeader = tabla.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
@@ -83,6 +84,7 @@ public class UsuariosForm extends javax.swing.JInternalFrame {
         txtContraseña = new javax.swing.JTextField();
         ComboSexo = new javax.swing.JComboBox<>();
         CalendarFecha = new com.toedter.calendar.JDateChooser();
+        btnNuevo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -169,6 +171,15 @@ public class UsuariosForm extends javax.swing.JInternalFrame {
         ComboSexo.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         ComboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE", "Masculino", "Femenino" }));
 
+        btnNuevo.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        btnNuevo.setText("NUEVO");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -203,11 +214,13 @@ public class UsuariosForm extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(135, 135, 135)
+                        .addGap(72, 72, 72)
                         .addComponent(btnActualizar)
-                        .addGap(127, 127, 127)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addGap(66, 66, 66)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -252,7 +265,8 @@ public class UsuariosForm extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAgregar)
                             .addComponent(btnActualizar)
-                            .addComponent(btnEliminar))
+                            .addComponent(btnEliminar)
+                            .addComponent(btnNuevo))
                         .addGap(15, 15, 15))))
         );
 
@@ -321,7 +335,8 @@ public class UsuariosForm extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
-        //Funciona correctamente
+        btnAgregar.setEnabled(false);
+        btnNuevo.setEnabled(true);
         int fila = tabla.getSelectedRow();
         if (fila == -1) {
             showMessageDialog(this, "Se debe seleccionar una fila");
@@ -374,6 +389,12 @@ public class UsuariosForm extends javax.swing.JInternalFrame {
         limpiarcampos();
 
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        limpiarcampos();
+        btnAgregar.setEnabled(true);
+        btnNuevo.setEnabled(false);
+    }//GEN-LAST:event_btnNuevoActionPerformed
     //Funcionando correctamente.
     void agregar() {
         if (txtNombreCompleto.getText().equals("") /*& txtFecha.getText().equals("")*/
@@ -444,6 +465,7 @@ public class UsuariosForm extends javax.swing.JInternalFrame {
             obj[7] = contra;
             obj[8] = id;
             dao.actualizar(obj);
+                 btnAgregar.setEnabled(true);
         }
     }
 //Funcionando correctamente.
@@ -460,6 +482,7 @@ public class UsuariosForm extends javax.swing.JInternalFrame {
             if (msj == YES_OPTION) {
                 dao.eliminar(id);
                 showMessageDialog(this, "Registro eliminado");
+                btnAgregar.setEnabled(true);
             }
             if (msj == NO_OPTION) {
 
@@ -483,6 +506,7 @@ public class UsuariosForm extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnNuevo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

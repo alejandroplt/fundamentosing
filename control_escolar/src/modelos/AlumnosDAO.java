@@ -65,8 +65,8 @@ public class AlumnosDAO implements CRUD {
                 c.setFechanaci(rs.getString(4));
                 c.setSexo(rs.getString(5));
                 c.setGrpsangre(rs.getString(6));
-//                c.setIdgrado(rs.getInt(8));
-                c.setNumero(rs.getString(7));
+                c.setIdgrado(rs.getInt(7));
+//                c.setNumero(rs.getString(8));
 //                c.setIdpadre(rs.getInt(9));
                 c.setNombreCompleto(rs.getString(8));
                 lista.add(c);

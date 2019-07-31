@@ -41,7 +41,10 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
         listar();
         mostrargrado();
         mostrarpadre();
-       // holders();
+        btnNuevo.setEnabled(false);
+        combo_IDAlumno.setVisible(false);
+        combo_idGrado.setVisible(false);
+        // holders();
         //Permite centrar el Header(titulos) de la tabla.
         TableCellRenderer rendererFromHeader = tabla.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
@@ -54,7 +57,6 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
 //        holder = new PlaceHolder(txtNombreCompleto, "Ingrese nombre iniciando por apellido");
 //        holder = new PlaceHolder(txtCurp, "Ingrese CURP utilizando mayúsculas");
 //    }
-
     void listar() {
         List<Alumnos> lista = dao.listar();
         modelo = (DefaultTableModel) tabla.getModel();
@@ -66,8 +68,8 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
             ob[3] = lista.get(i).getFechanaci();
             ob[4] = lista.get(i).getSexo();
             ob[5] = lista.get(i).getGrpsangre();
-//            ob[7] = lista.get(i).getIdgrado();
-            ob[6] = lista.get(i).getNumero();
+            ob[6] = lista.get(i).getIdgrado();
+//            ob[6] = lista.get(i).getNumero();
 //            ob[8] = lista.get(i).getIdpadre();
             ob[7] = lista.get(i).getNombreCompleto();
             modelo.addRow(ob);
@@ -83,6 +85,7 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ComboGrado.addItem(rs.getString("numero"));
+                combo_idGrado.addItem(rs.getString("id_grado"));
 
             }
         } catch (SQLException ex) {
@@ -98,6 +101,7 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ComboPadre.addItem(rs.getString("np_completo"));
+                combo_IDAlumno.addItem(rs.getString("id_padre"));
             }
         } catch (SQLException ex) {
 
@@ -127,6 +131,9 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         ComboPadre = new javax.swing.JComboBox<>();
         CalendarFecha = new com.toedter.calendar.JDateChooser();
+        btnNuevo = new javax.swing.JButton();
+        combo_idGrado = new javax.swing.JComboBox<>();
+        combo_IDAlumno = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -220,6 +227,24 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
             }
         });
 
+        btnNuevo.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        btnNuevo.setText("NUEVO");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
+
+        combo_idGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "id_grado" }));
+
+        combo_IDAlumno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "id_alumno" }));
+        combo_IDAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_IDAlumnoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -227,23 +252,22 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(135, 135, 135)
-                        .addComponent(btnActualizar)
-                        .addGap(95, 95, 95)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCurp, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                            .addComponent(txtNombreCompleto)
-                            .addComponent(CalendarFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCurp, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                                    .addComponent(txtNombreCompleto)
+                                    .addComponent(CalendarFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(combo_idGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(165, 165, 165)
+                                .addComponent(combo_IDAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,11 +277,21 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ComboSangre, 0, 211, Short.MAX_VALUE)
+                            .addComponent(ComboSangre, 0, 242, Short.MAX_VALUE)
                             .addComponent(ComboGrado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ComboSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ComboPadre, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(12, 12, 12)
+                            .addComponent(ComboPadre, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(12, 12, 12))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnActualizar)
+                        .addGap(73, 73, 73)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -296,14 +330,24 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
                                     .addComponent(CalendarFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(ComboPadre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(ComboPadre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(20, 20, 20))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(combo_idGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(combo_IDAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAgregar)
                             .addComponent(btnActualizar)
-                            .addComponent(btnEliminar))
+                            .addComponent(btnEliminar)
+                            .addComponent(btnNuevo))
                         .addGap(15, 15, 15))))
         );
 
@@ -342,7 +386,7 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -378,7 +422,8 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
-
+        btnAgregar.setEnabled(false);
+        btnNuevo.setEnabled(true);
         int fila = tabla.getSelectedRow();
         if (fila == -1) {
             showMessageDialog(this, "Se debe seleccionar una fila");
@@ -428,15 +473,28 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void ComboGradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboGradoActionPerformed
-        // TODO add your handling code here:
+        int cmbgrado = ComboGrado.getSelectedIndex();
+        combo_idGrado.setSelectedIndex(cmbgrado);
     }//GEN-LAST:event_ComboGradoActionPerformed
 
     private void ComboPadreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboPadreActionPerformed
-        // TODO add your handling code here:
+        int combopadre = ComboPadre.getSelectedIndex();
+        combo_IDAlumno.setSelectedIndex(combopadre);
     }//GEN-LAST:event_ComboPadreActionPerformed
 
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        limpiarcampos();
+        btnAgregar.setEnabled(true);
+        btnNuevo.setEnabled(false);
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void combo_IDAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_IDAlumnoActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_combo_IDAlumnoActionPerformed
+
     void agregar() {
-        if ( txtNombreCompleto.getText().equals("") & txtCurp.getText().equals("")) {
+        if (txtNombreCompleto.getText().equals("") & txtCurp.getText().equals("")) {
             showMessageDialog(this, "Se deben llenar todos los campos");
         } else {
             int año = CalendarFecha.getCalendar().get(YEAR);
@@ -448,9 +506,11 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
             String fecha = año + "-" + mes + "-" + dia;
             String combsex = ComboSexo.getSelectedItem().toString();
             String comsangre = ComboSangre.getSelectedItem().toString();
-            int combgrado = ComboGrado.getSelectedIndex();
-            int combpadre = ComboPadre.getSelectedIndex();
+            int combgrado = Integer.parseInt(combo_idGrado.getSelectedItem().toString());
+            int combpadre = Integer.parseInt(combo_IDAlumno.getSelectedItem().toString());
 
+//            int combgrado = ComboGrado.getSelectedIndex();
+//            int combpadre = ComboPadre.getSelectedIndex();
             Object[] ob = new Object[7];
             ob[0] = nombrec;
             ob[1] = curp;
@@ -473,6 +533,8 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
         ComboSangre.setSelectedItem("SELECCIONE");
         ComboGrado.setSelectedItem("SELECCIONE");
         ComboPadre.setSelectedItem("SELECCIONE");
+        combo_idGrado.setSelectedIndex(0);
+        combo_IDAlumno.setSelectedIndex(0);
 
     }
 
@@ -503,6 +565,7 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
             obj[6] = idpadre;
             obj[7] = id;
             dao.actualizar(obj);
+            btnAgregar.setEnabled(true);
         }
     }
 
@@ -518,6 +581,7 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
             if (msj == YES_OPTION) {
                 dao.eliminar(id);
                 showMessageDialog(this, "Registro eliminado");
+                btnAgregar.setEnabled(true);
             }
             if (msj == NO_OPTION) {
 
@@ -544,6 +608,9 @@ public class AlumnoForm extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnNuevo;
+    private javax.swing.JComboBox<String> combo_IDAlumno;
+    private javax.swing.JComboBox<String> combo_idGrado;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

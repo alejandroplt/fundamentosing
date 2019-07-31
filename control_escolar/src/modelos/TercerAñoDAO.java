@@ -16,9 +16,13 @@ public class TercerAñoDAO implements CRUD {
     @Override
     public List listar() {
         List<TercerAño> lista = new ArrayList<>();
-        String sql = "select * from terceraño";
-//        String sql = "select e.id_estudiante,e.matricula,e.n_completo,CURP,e.f_nacimiento,e.sexo,e.grp_sanguineo,g.numero,p.np_completo from "
-//                + "estudiante as e natural join padre as p natural join grado as g";
+        String sql = "select pa.id_terceraño,gra.numero,g.letra,e.n_completo,d.n_completo from "
+                + "terceraño as pa INNER join grupo_identificador as g ON pa.id_grupo=g.id_grupo INNER join estudiante as e "
+                + "ON pa.id_estudiante=e.id_estudiante INNER join docente as d ON pa.id_docente=d.id_docente INNER join grado as gra "
+                + "ON e.id_grado=gra.id_grado";
+//        String sql = "select id_docente from "
+//                + "terceraño where id_docente=?";
+
         try {
             con = acceso.Conectar();
             ps = con.prepareStatement(sql);
@@ -27,27 +31,27 @@ public class TercerAñoDAO implements CRUD {
                 TercerAño c = new TercerAño();
                 c.setId(rs.getInt(1));
                 c.setGrado(rs.getString(2));
-                c.setGrupo(rs.getInt(3));
-                c.setNombrealumno(rs.getInt(4));
-                c.setDocente(rs.getInt(5));
+                c.setGrupo(rs.getString(3));
+                c.setNombrealumno(rs.getString(4));
+                c.setDocente(rs.getString(5));
                 lista.add(c);
             }
         } catch (Exception e) {
         }
         return lista;
+//        return null;
     }
 
     @Override
     public int add(Object[] o) {
         int r = 0;
-        String sql = "insert into terceraño(grado,id_grupo,id_estudiante,id_docente)values(?,?,?,?)";
+        String sql = "insert into terceraño(id_grupo,id_estudiante,id_docente)values(?,?,?)";
         try {
             con = acceso.Conectar();
             ps = con.prepareStatement(sql);
             ps.setObject(1, o[0]);
             ps.setObject(2, o[1]);
             ps.setObject(3, o[2]);
-            ps.setObject(4, o[3]);
             r = ps.executeUpdate();
         } catch (Exception e) {
         }

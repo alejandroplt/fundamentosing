@@ -10,11 +10,11 @@ import modelos.Docentes;
 import modelos.DocentesDAO;
 
 public class DocentesLogin extends javax.swing.JFrame {
-
+    
     DocentesDAO vdao = new DocentesDAO();
 //    EntidadVendedor ev = new EntidadVendedor();
     Docentes ev = new Docentes();
-
+    
     public DocentesLogin() {
         initComponents();
 //        transparenciaButton();
@@ -251,6 +251,8 @@ public class DocentesLogin extends javax.swing.JFrame {
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         dispose();
+        InicioSistema ini = new InicioSistema();
+        ini.setVisible(true);
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
@@ -274,8 +276,8 @@ public class DocentesLogin extends javax.swing.JFrame {
             txtUser.requestFocus();
         } else {
             ev = vdao.ValidarAdmin(dni, user);
-            if (ev.getContraseña() != null && ev.getNo_identifi()!= null) {
-                PrincipalDocente p = new PrincipalDocente(); 
+            if (ev.getContraseña() != null && ev.getNo_identifi() != null) {
+                PrincipalDocente p = new PrincipalDocente();                
                 p.setVisible(true);
                 dispose();
             } else {
@@ -314,7 +316,7 @@ public class DocentesLogin extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

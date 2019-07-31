@@ -3,16 +3,12 @@ package interfaces;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.BodyPart;
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JFileChooser;
@@ -26,11 +22,11 @@ public class panel extends javax.swing.JFrame {
 
     String arch;
     String nom;
-
     ControlCorreoDAO dao = new ControlCorreoDAO();
     ControlCorreo v = new ControlCorreo();
 
     public panel() {
+
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -44,6 +40,7 @@ public class panel extends javax.swing.JFrame {
 
         txtRecibe = new javax.swing.JTextField();
         txtAsunto = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtMensaje = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
@@ -52,7 +49,6 @@ public class panel extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtFecha = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         ruta = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -61,6 +57,14 @@ public class panel extends javax.swing.JFrame {
         txtRecibe.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
 
         txtAsunto.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+
+        jButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/adjuntar.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         txtMensaje.setColumns(20);
         txtMensaje.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
@@ -90,21 +94,7 @@ public class panel extends javax.swing.JFrame {
         txtFecha.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
         txtFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/adjuntar.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         ruta.setEditable(false);
-        ruta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        ruta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rutaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,7 +118,7 @@ public class panel extends javax.swing.JFrame {
                             .addComponent(txtAsunto, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                             .addComponent(txtRecibe, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                             .addComponent(ruta))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 56, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -157,8 +147,8 @@ public class panel extends javax.swing.JFrame {
                             .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2)))
+                            .addComponent(jButton2)
+                            .addComponent(ruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,7 +189,7 @@ public class panel extends javax.swing.JFrame {
         try {
             BodyPart texto = new MimeBodyPart();
             texto.setText(mensaje);
-//
+            
             BodyPart adjunto = new MimeBodyPart();
             adjunto.setDataHandler(new DataHandler(new FileDataSource(rout)));
             adjunto.setFileName(nom);
@@ -253,10 +243,6 @@ public class panel extends javax.swing.JFrame {
             ruta.setEditable(false);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void rutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rutaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rutaActionPerformed
     void limpiarcampo() {
         txtRecibe.setText("");
         txtAsunto.setText("");

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-07-2019 a las 07:52:50
+-- Tiempo de generación: 31-07-2019 a las 10:30:25
 -- Versión del servidor: 10.3.16-MariaDB
 -- Versión de PHP: 7.3.6
 
@@ -143,11 +143,11 @@ CREATE TABLE `estudiante` (
 --
 
 INSERT INTO `estudiante` (`id_estudiante`, `n_completo`, `CURP`, `f_nacimiento`, `sexo`, `grp_sanguineo`, `id_grado`, `id_padre`) VALUES
-(1, 'Martinez Ruiz Diego', 'MAHP061016HOCRRDA4', '2001-10-01', 'Masculino', 'O -', 1, 1),
+(1, 'Martinez Ruiz Diego D', 'MAHP061016HOCRRDA4', '2001-10-01', 'Masculino', 'O -', 1, 1),
 (2, 'Juarez Perez Luis', 'JUPJ120381HOCRRSR2', '1999-02-05', 'Masculino', 'O +', 3, 3),
 (3, 'Perez Perez Pedro', 'OSORTPP123', '2019-06-01', 'Masculino', 'AB +', 2, 3),
 (4, 'Perez Perez Maria', 'MSUEJFK123KJ', '1999-06-15', 'Femenino', 'B -', 1, 3),
-(31, 'Martinez Ruiz Maria', 'MAROSP2O3991', '2001-6-13', 'Femenino', 'A +', 2, 1);
+(31, 'Martinez Ruiz MariaS', 'MAROSP2O3991', '2001-06-13', 'Femenino', 'A +', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -193,35 +193,54 @@ INSERT INTO `grupo_identificador` (`id_grupo`, `letra`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `guardacalificacioness1`
+--
+
+CREATE TABLE `guardacalificacioness1` (
+  `id_guardacali1` int(11) NOT NULL,
+  `materias` varchar(100) NOT NULL DEFAULT '0',
+  `periodo1` varchar(5) NOT NULL DEFAULT '0',
+  `periodo2` varchar(5) NOT NULL DEFAULT '0',
+  `periodo3` varchar(5) NOT NULL DEFAULT '0',
+  `periodo4` varchar(5) NOT NULL DEFAULT '0',
+  `periodo5` varchar(5) NOT NULL DEFAULT '0',
+  `promediofinal` varchar(5) NOT NULL DEFAULT '0',
+  `nombrealumno` varchar(100) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `guardacalificacioness1`
+--
+
+INSERT INTO `guardacalificacioness1` (`id_guardacali1`, `materias`, `periodo1`, `periodo2`, `periodo3`, `periodo4`, `periodo5`, `promediofinal`, `nombrealumno`) VALUES
+(1, 'ESPAÑOL I', '7', '8', '9', '9', '8', '8.2', 'Perez Perez Maria'),
+(2, 'MATEMATICAS I', '8', '8', '8', '8', '8', '8', 'Perez Perez Maria'),
+(3, 'CIENCIAS I', '9', '9', '9', '9', '8', '8.8', 'Perez Perez Maria'),
+(4, 'GEOGRAFIA I', '8', '8', '8', '8', '8', '8', 'Perez Perez Maria'),
+(5, 'INGLES I', '7', '9', '8', '8', '8', '8', 'Perez Perez Maria'),
+(6, 'ARTES I', '8', '8', '8', '9', '9', '8.4', 'Perez Perez Maria'),
+(7, 'EDUCACION FISICA I', '9', '9', '9', '9', '9', '9', 'Perez Perez Maria'),
+(8, 'FORMACION CIVICA Y ETICA I', '8', '8', '8', '8', '8', '8', 'Perez Perez Maria'),
+(9, 'HISTORIA I', '7', '8', '7', '7', '8', '7.4', 'Perez Perez Maria');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `guardarcalificaciones1`
 --
 
 CREATE TABLE `guardarcalificaciones1` (
   `id_guardacali1` int(11) NOT NULL,
-  `materias` varchar(50) NOT NULL DEFAULT '0',
+  `id_materia` int(11) NOT NULL DEFAULT 0,
   `periodo1` varchar(5) NOT NULL,
   `periodo2` varchar(5) NOT NULL,
   `periodo3` varchar(5) NOT NULL,
   `periodo4` varchar(5) NOT NULL,
   `periodo5` varchar(5) NOT NULL,
   `promediofinal` varchar(5) NOT NULL,
-  `nombrealumno` varchar(100) NOT NULL
+  `id_estudiante` int(11) NOT NULL,
+  `inasistencias` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `guardarcalificaciones1`
---
-
-INSERT INTO `guardarcalificaciones1` (`id_guardacali1`, `materias`, `periodo1`, `periodo2`, `periodo3`, `periodo4`, `periodo5`, `promediofinal`, `nombrealumno`) VALUES
-(1, 'ESPAÑOL', '8', '8', '8', '8', '8', '8', 'Martinez Ruiz Maria'),
-(2, 'MATEMATICAS', '7', '8', '7', '9', '9', '8', 'Martinez Ruiz Maria'),
-(3, 'BIOLOGIA', '9', '8', '7', '8', '8', '8', 'Martinez Ruiz Maria'),
-(4, 'GEOGRAFIA', '9', '8', '9', '8', '8', '8.4', 'Martinez Ruiz Maria'),
-(5, 'INGLES', '7', '7', '8', '8', '8', '7.6', 'Martinez Ruiz Maria'),
-(6, 'ARTES', '9', '8', '9', '9', '9', '8.8', 'Martinez Ruiz Maria'),
-(7, 'FORMACION CIVICA Y ETICA', '9', '9', '8', '8', '8', '8.4', 'Martinez Ruiz Maria'),
-(8, 'HISTORIA', '9', '9', '9', '9', '9', '9', 'Martinez Ruiz Maria'),
-(9, 'EDUCACION FISICA', '7', '8', '8', '8', '8', '7.8', 'Martinez Ruiz Maria');
 
 -- --------------------------------------------------------
 
@@ -362,8 +381,7 @@ INSERT INTO `padre` (`id_padre`, `np_completo`, `ocupacion`, `direccion`, `telef
 (1, 'Perez Perez Maria', 'comerciante', 'calle diaz ordaz', '9510901122', '5182838', 'prznmaria@gmail.com'),
 (2, 'Martinez Diaz Jose', 'arquitecto', 'calle zapata numero 23', '9512531147', '5173821', 'josemtz@gmail.com'),
 (3, 'Jose juan Martinez', 'doctor', 'California 5', '9512227661', '51728328', 'jose@gmail.com'),
-(4, 'Hernandez Ruiz Hugo', 'carpintero', 'calle los olivos', '9512378123', '51823931', 'hugo@gmail.com'),
-(8, 'Jimenez Perez Daniela', 'contador', 'calle los huertos', '9514723812', '51223812', 'daniela.jm@gmail.com');
+(4, 'Hernandez Ruiz Hugo', 'carpintero', 'calle los olivos', '9512378123', '51823931', 'hugo@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -373,7 +391,6 @@ INSERT INTO `padre` (`id_padre`, `np_completo`, `ocupacion`, `direccion`, `telef
 
 CREATE TABLE `primeraño` (
   `id_primeraño` int(11) NOT NULL,
-  `grado` varchar(3) NOT NULL,
   `id_grupo` int(11) NOT NULL,
   `id_estudiante` int(11) NOT NULL,
   `id_docente` int(11) NOT NULL
@@ -383,9 +400,9 @@ CREATE TABLE `primeraño` (
 -- Volcado de datos para la tabla `primeraño`
 --
 
-INSERT INTO `primeraño` (`id_primeraño`, `grado`, `id_grupo`, `id_estudiante`, `id_docente`) VALUES
-(1, '1º', 1, 1, 1),
-(2, '1º', 1, 4, 1);
+INSERT INTO `primeraño` (`id_primeraño`, `id_grupo`, `id_estudiante`, `id_docente`) VALUES
+(15, 2, 4, 3),
+(17, 2, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -395,7 +412,6 @@ INSERT INTO `primeraño` (`id_primeraño`, `grado`, `id_grupo`, `id_estudiante`,
 
 CREATE TABLE `segundoaño` (
   `id_segundoaño` int(11) NOT NULL,
-  `grado` varchar(3) NOT NULL,
   `id_grupo` int(11) NOT NULL,
   `id_estudiante` int(11) NOT NULL,
   `id_docente` int(11) NOT NULL
@@ -405,8 +421,9 @@ CREATE TABLE `segundoaño` (
 -- Volcado de datos para la tabla `segundoaño`
 --
 
-INSERT INTO `segundoaño` (`id_segundoaño`, `grado`, `id_grupo`, `id_estudiante`, `id_docente`) VALUES
-(1, '2º', 3, 3, 2);
+INSERT INTO `segundoaño` (`id_segundoaño`, `id_grupo`, `id_estudiante`, `id_docente`) VALUES
+(1, 3, 3, 2),
+(3, 3, 31, 2);
 
 -- --------------------------------------------------------
 
@@ -416,7 +433,6 @@ INSERT INTO `segundoaño` (`id_segundoaño`, `grado`, `id_grupo`, `id_estudiante
 
 CREATE TABLE `terceraño` (
   `id_terceraño` int(11) NOT NULL,
-  `grado` varchar(3) NOT NULL,
   `id_grupo` int(11) NOT NULL,
   `id_estudiante` int(11) NOT NULL,
   `id_docente` int(11) NOT NULL
@@ -426,8 +442,8 @@ CREATE TABLE `terceraño` (
 -- Volcado de datos para la tabla `terceraño`
 --
 
-INSERT INTO `terceraño` (`id_terceraño`, `grado`, `id_grupo`, `id_estudiante`, `id_docente`) VALUES
-(1, '3º', 3, 2, 3);
+INSERT INTO `terceraño` (`id_terceraño`, `id_grupo`, `id_estudiante`, `id_docente`) VALUES
+(3, 1, 2, 1);
 
 --
 -- Índices para tablas volcadas
@@ -480,10 +496,18 @@ ALTER TABLE `grupo_identificador`
   ADD PRIMARY KEY (`id_grupo`);
 
 --
+-- Indices de la tabla `guardacalificacioness1`
+--
+ALTER TABLE `guardacalificacioness1`
+  ADD PRIMARY KEY (`id_guardacali1`);
+
+--
 -- Indices de la tabla `guardarcalificaciones1`
 --
 ALTER TABLE `guardarcalificaciones1`
-  ADD PRIMARY KEY (`id_guardacali1`);
+  ADD PRIMARY KEY (`id_guardacali1`),
+  ADD UNIQUE KEY `id_materia` (`id_materia`),
+  ADD UNIQUE KEY `id_estudiante` (`id_estudiante`);
 
 --
 -- Indices de la tabla `guardarcalificaciones2`
@@ -557,7 +581,7 @@ ALTER TABLE `asignacion`
 -- AUTO_INCREMENT de la tabla `controlcorreo`
 --
 ALTER TABLE `controlcorreo`
-  MODIFY `id_correo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_correo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `docente`
@@ -569,7 +593,7 @@ ALTER TABLE `docente`
 -- AUTO_INCREMENT de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
-  MODIFY `id_estudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_estudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `grado`
@@ -584,6 +608,12 @@ ALTER TABLE `grupo_identificador`
   MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT de la tabla `guardacalificacioness1`
+--
+ALTER TABLE `guardacalificacioness1`
+  MODIFY `id_guardacali1` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT de la tabla `guardarcalificaciones1`
 --
 ALTER TABLE `guardarcalificaciones1`
@@ -593,7 +623,7 @@ ALTER TABLE `guardarcalificaciones1`
 -- AUTO_INCREMENT de la tabla `guardarcalificaciones2`
 --
 ALTER TABLE `guardarcalificaciones2`
-  MODIFY `id_guardarcali2` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_guardarcali2` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `guardarcalificaciones3`
@@ -614,16 +644,22 @@ ALTER TABLE `padre`
   MODIFY `id_padre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT de la tabla `primeraño`
+--
+ALTER TABLE `primeraño`
+  MODIFY `id_primeraño` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
 -- AUTO_INCREMENT de la tabla `segundoaño`
 --
 ALTER TABLE `segundoaño`
-  MODIFY `id_segundoaño` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_segundoaño` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `terceraño`
 --
 ALTER TABLE `terceraño`
-  MODIFY `id_terceraño` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_terceraño` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas

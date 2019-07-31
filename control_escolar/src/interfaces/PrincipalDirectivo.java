@@ -47,6 +47,7 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
@@ -275,6 +276,15 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem5);
 
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        jMenuItem7.setText("CONTROL DE MATERIAS");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem7);
+
         jMenu10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tarea.png"))); // NOI18N
         jMenu10.setText("ASIGNACION");
 
@@ -439,6 +449,11 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
         CentrarVentana(cpf); // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        MateriasForm1 materias = new MateriasForm1();
+        CentrarVentana(materias);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     void CentrarVentana(JInternalFrame frame) {
         VentanaPrincipal.add(frame);
         Dimension dimension = VentanaPrincipal.getSize();
@@ -506,6 +521,7 @@ public class PrincipalDirectivo extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
